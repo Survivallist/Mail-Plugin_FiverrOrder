@@ -1,8 +1,5 @@
 package ch.flavianthepavian.postpluginforthatrobert.config;
 
-import ch.flavianthepavian.postpluginforthatrobert.Main;
-import org.bukkit.configuration.file.FileConfiguration;
-
 public class ConfigManager
 {
     public static void reload()

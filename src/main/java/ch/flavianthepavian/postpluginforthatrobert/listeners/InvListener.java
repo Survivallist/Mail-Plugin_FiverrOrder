@@ -1,6 +1,5 @@
 package ch.flavianthepavian.postpluginforthatrobert.listeners;
 
-import ch.flavianthepavian.postpluginforthatrobert.Main;
 import ch.flavianthepavian.postpluginforthatrobert.config.Config;
 import ch.flavianthepavian.postpluginforthatrobert.config.PaketeConfig;
 import ch.flavianthepavian.postpluginforthatrobert.invs.AngelaPetra;
@@ -20,7 +19,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import java.util.*;
 
 public class InvListener implements Listener
@@ -45,13 +43,13 @@ public class InvListener implements Listener
         if(event.getView().getTitle().equalsIgnoreCase(Config.getAngelaPetraTitle()))
         {
             event.setCancelled(true);
-            if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Drucker"))
+            if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Config.getPrinterItemTitle()))
             {
-                float price = (float) 6;
+                float price = Config.getDruckerPrice();
                 BuyAPI.buySingleItem(player, AngelaPetra.drucker, price, new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
-                        player.sendMessage("Success");
+                        player.sendMessage(Config.getBuySuccessMessage());
                         ItemStack stack = AngelaPetra.drucker;
                         if(player.getInventory().firstEmpty() == -1)
                         {
@@ -65,17 +63,17 @@ public class InvListener implements Listener
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
-            else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Briefumschlag"))
+            else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Config.getBriefItemTitle()))
             {
-                float price = (float) 6;
+                float price = Config.getBriefPrice();
                 BuyAPI.buySingleItem(player, AngelaPetra.brief, price, new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
-                        player.sendMessage("Success");
+                        player.sendMessage(Config.getBuySuccessMessage());
                         ItemStack stack = AngelaPetra.brief;
                         if(player.getInventory().firstEmpty() == -1)
                         {
@@ -89,17 +87,17 @@ public class InvListener implements Listener
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
-            else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Schreibpapier"))
+            else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Config.getPapierItemTitle()))
             {
-                float price = (float) 6;
+                float price = Config.getPapierPrice();
                 BuyAPI.buySingleItem(player, AngelaPetra.papier, price, new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
-                        player.sendMessage("Success");
+                        player.sendMessage(Config.getBuySuccessMessage());
                         ItemStack stack = AngelaPetra.papier;
                         if(player.getInventory().firstEmpty() == -1)
                         {
@@ -113,17 +111,17 @@ public class InvListener implements Listener
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
-            else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Grusskarte"))
+            else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Config.getKarteItemTitle()))
             {
-                float price = (float) 6;
+                float price = Config.getKartePrice();
                 BuyAPI.buySingleItem(player, AngelaPetra.grusskarte, price, new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
-                        player.sendMessage("Success");
+                        player.sendMessage(Config.getBuySuccessMessage());
                         ItemStack stack = AngelaPetra.grusskarte;
                         if(player.getInventory().firstEmpty() == -1)
                         {
@@ -137,46 +135,48 @@ public class InvListener implements Listener
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
         }
-        else if(event.getView().getTitle().equalsIgnoreCase("Wähle eine Grusskarte aus"))
+        else if(event.getView().getTitle().equalsIgnoreCase(Config.getChooseKarteTitle()))
         {
             event.setCancelled(true);
             if(event.getCurrentItem().getItemMeta().getDisplayName().contains("Grusskarte Nr. "))
             {
                 int id = Integer.parseInt(event.getCurrentItem().getItemMeta().getDisplayName().split(" ")[2]);
-
+                ItemStack stack = new ItemStack(Material.BOOK);
+                ItemMeta meta = stack.getItemMeta();
+                meta.setDisplayName(Config.getBriefItemTitle());
+                meta.setLore(Collections.singletonList(ChatColor.GRAY + "Enthält Grusskarte Nr. " + id));
                 int slot = 45;
                 for(int i = 0; i < 9; i++)
                 {
                     if(player.getInventory().getItem(i) != null)
                     {
-                        if (player.getInventory().getItem(i).getType() == Material.BOOK)
+                        if(player.getInventory().getItem(i).hasItemMeta())
                         {
-                            if(player.getInventory().getItem(i).hasItemMeta())
+                            if(player.getInventory().getItem(i).getItemMeta().getDisplayName() != null)
                             {
-                                if(player.getInventory().getItem(i).getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Briefumschlag"))
+                                if(player.getInventory().getItem(i).getItemMeta().getDisplayName().equals(Config.getBriefItemTitle()))
                                 {
-                                    slot = i;
-                                    break;
+                                    if(player.getInventory().getItem(i).getItemMeta().getLore().get(0).contains("Kein"))
+                                    {
+                                        slot = i;
+                                        break;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                ItemStack stack = new ItemStack(Material.BOOK);
-                ItemMeta meta = stack.getItemMeta();
-                meta.setDisplayName(ChatColor.WHITE + "Briefumschlag");
-                meta.setLore(Collections.singletonList(ChatColor.GRAY + "Enthält Grusskarte Nr. " + id));
                 stack.setItemMeta(meta);
                 player.getInventory().setItem(slot, stack);
                 player.closeInventory();
             }
         }
-        else if(event.getView().getTitle().equals("Füge Dokumente hinzu"))
+        else if(event.getView().getTitle().equals(Config.getPrinterStartTitle()))
         {
             if(!(event.getSlot() == 10 || event.getSlot() == 12 || event.getSlot() == 13 || event.getSlot() == 16) && event.getRawSlot() < 36)
             {
@@ -241,27 +241,27 @@ public class InvListener implements Listener
                 Drucker.openLoading(player, togiveback);
             }
         }
-        else if(event.getView().getTitle().equals("Kopieren..."))
+        else if(event.getView().getTitle().equals(Config.getPrinterWorkingTitle()))
         {
             event.setCancelled(true);
         }
-        else if(event.getView().getTitle().equals("Fertig"))
+        else if(event.getView().getTitle().equals(Config.getPrinterFinishTitle()))
         {
             if(event.getSlot() != 12 && event.getSlot() != 14)
             {
                 event.setCancelled(true);
             }
         }
-        else if(event.getView().getTitle().equalsIgnoreCase("NorbertHeinrich"))
+        else if(event.getView().getTitle().equalsIgnoreCase(Config.getNorbertHeinrichTitle()))
         {
             event.setCancelled(true);
-            if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Drucker"))
+            if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Config.getPrinterItemTitle()))
             {
-                float price = (float) 6;
+                float price = Config.getDruckerPrice();
                 BuyAPI.buySingleItem(player, AngelaPetra.drucker, price, new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
-                        player.sendMessage("Success");
+                        player.sendMessage(Config.getBuySuccessMessage());
                         ItemStack stack = AngelaPetra.drucker;
                         if(player.getInventory().firstEmpty() == -1)
                         {
@@ -275,23 +275,21 @@ public class InvListener implements Listener
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
-
             else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Etwas versenden"))
             {
                 NorbertHeinrich.openSend(player);
             }
-            else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Grusskarte"))
+            else if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(Config.getKarteItemTitle()))
             {
-                event.setCancelled(true);
-                float price = (float) 6;
+                float price = Config.getKartePrice();
                 BuyAPI.buySingleItem(player, AngelaPetra.grusskarte, price, new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
-                        player.sendMessage("Success");
+                        player.sendMessage(Config.getBuySuccessMessage());
                         ItemStack stack = AngelaPetra.grusskarte;
                         if(player.getInventory().firstEmpty() == -1)
                         {
@@ -305,18 +303,17 @@ public class InvListener implements Listener
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
-            else if(event.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.WHITE + "Paket"))
+            else if(event.getCurrentItem().getItemMeta().getDisplayName().equals(Config.getPaketItemTitle()))
             {
-                event.setCancelled(true);
-                float price = 5.99f;
+                float price = Config.getPaketPrice();
                 BuyAPI.buySingleItem(player, new ItemStack(Material.ENDER_CHEST), price, new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
-                        player.sendMessage("Success");
+                        player.sendMessage(Config.getBuySuccessMessage());
                         ItemStack stack = new ItemStack(Material.ENDER_CHEST);
                         ItemMeta meta = stack.getItemMeta();
                         meta.setDisplayName(ChatColor.WHITE + "Paket");
@@ -334,12 +331,12 @@ public class InvListener implements Listener
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
         }
-        else if(event.getView().getTitle().equals("Lege einen Brief ein"))
+        else if(event.getView().getTitle().equals(Config.getInsertBriefTitle()))
         {
             if(event.getSlot() != 13 && event.getRawSlot() < 27)
             {
@@ -351,16 +348,16 @@ public class InvListener implements Listener
                 {
                     return;
                 }
-                if (!event.getInventory().getItem(13).getItemMeta().getDisplayName().equals(ChatColor.WHITE + "Briefumschlag"))
+                if (!event.getInventory().getItem(13).getItemMeta().getDisplayName().equals(Config.getBriefItemTitle()))
                 {
                     return;
                 }
                 getinput.put(player.getUniqueId(), event.getInventory().getItem(13));
-                player.sendMessage(ChatColor.WHITE + "Gebe die Adresse ein (GS/WS-???. Um abzubrechen, gebe \"cancel\" ein");
+                player.sendMessage(Config.getInputBriefMessage());
                 player.closeInventory();
             }
         }
-        else if(event.getView().getTitle().equals("Lege ein Paket ein"))
+        else if(event.getView().getTitle().equals(Config.getInsertPaketTitle()))
         {
             if(event.getSlot() != 13 && event.getRawSlot() < 27)
             {
@@ -372,24 +369,24 @@ public class InvListener implements Listener
                 {
                     return;
                 }
-                if (!event.getInventory().getItem(13).getItemMeta().getDisplayName().equals(ChatColor.WHITE + "Paket"))
+                if (!event.getInventory().getItem(13).getItemMeta().getDisplayName().equals(Config.getPaketItemTitle()))
                 {
                     return;
                 }
                 getinput.put(player.getUniqueId(), event.getInventory().getItem(13));
-                player.sendMessage(ChatColor.WHITE + "Hey, du möchtest ein Paket abschicken, Sehr gerne... Nh.. Moment... Ich muss das eben durchscannen... . soo.. perfekt... Dann " +
-                        "bräuchte ich einmal die Adresse wo es hingeschickt werden soll. Um abzubrechen, gebe \"cancel\" ein");
+                player.sendMessage(Config.getInputPaketMessage());
                 player.closeInventory();
             }
         }
-        else if(event.getView().getTitle().equals("Fülle das Paket"))
+        else if(event.getView().getTitle().equals(Config.getFillPaketTitle()))
         {
             event.setCancelled(true);
             player.closeInventory();
         }
-        else if(event.getView().getTitle().equals("Was willst du versenden?"))
+        else if(event.getView().getTitle().equals(Config.getWhatToSendTitle()))
         {
             event.setCancelled(true);
+            player.sendMessage(event.getCurrentItem().getItemMeta().getDisplayName());
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Brief absenden"))
             {
                 NorbertHeinrich.openSendBrief(player);
@@ -410,62 +407,61 @@ public class InvListener implements Listener
             if(event.getMessage().equalsIgnoreCase("cancel"))
             {
                 getinput.remove(event.getPlayer().getUniqueId());
-                event.getPlayer().sendMessage("Input wurde gecancelt");
+                event.getPlayer().sendMessage(Config.getInputCancelMessage());
                 return;
             }
             String id = event.getMessage();
             if(!id.startsWith("GS-") && !id.startsWith("WS-"))
             {
-                event.getPlayer().sendMessage("Dein Input kann nicht verarbeitet werden. Halte dich an dieses Muster: (GS/WS-???)");
+                event.getPlayer().sendMessage(Config.getInputErrorMessage());
                 return;
             }
             if(id.length() != 6)
             {
-                event.getPlayer().sendMessage("Dein Input kann nicht verarbeitet werden. Halte dich an dieses Muster: (GS/WS-???)");
+                event.getPlayer().sendMessage(Config.getInputErrorMessage());
                 return;
             }
             try{
                 int i = Integer.parseInt(id.split("-")[1]);
             }catch (NumberFormatException e)
             {
-                event.getPlayer().sendMessage("Dein Input kann nicht verarbeitet werden. Halte dich an dieses Muster: (GS/WS-???)");
+                event.getPlayer().sendMessage(Config.getInputErrorMessage());
                 return;
             }
             Player player = event.getPlayer();
             ItemStack item = getinput.get(player.getUniqueId());
             getinput.remove(player.getUniqueId());
-            if(item.getType() == Material.BOOK)
+            if(item.getType() == Config.getBriefMaterial())
             {
-                BuyAPI.buySingleItem(player, new ItemStack(Material.BOOK), 4.99f, new BuyAPI.BuyCallback() {
+                BuyAPI.buySingleItem(player, new ItemStack(Config.getBriefMaterial()), Config.getSendBriefPrice(), new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
                         //hier wurde der brief erfolgreich verschickt
                         //Der Itemstack item ist das item das verschickt wurde
                         //Der string id die Briefkasten id
-                        player.sendMessage("??? > Sie haben erfolgreich den Brief abgesendet, in 1-2h sollte ihr Brief an das gewünschte Briefkasten hingebracht werden! Ich " +
-                                "wünsche ihnen noch einen schönen Tag!");
+                        player.sendMessage(Config.getBriefSentMessage().replace("{adresse}", id));
                     }
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
             else
             {
-                BuyAPI.buySingleItem(player, new ItemStack(Material.ENDER_CHEST), 24.99f, new BuyAPI.BuyCallback() {
+                BuyAPI.buySingleItem(player, new ItemStack(Config.getPaketMaterial()), Config.getSendPaketPrice(), new BuyAPI.BuyCallback() {
                     @Override
                     public void success(Player player) {
                         //hier wurde das paket erfolgreich verschickt
                         //Der Itemstack item ist das item das verschickt wurde
                         //Der string id die Briefkasten id
-                        player.sendMessage("Du hast dein Paket zu " + id + " abgeschickt, der Empfänger erhält in 1-2 Tagen sein Paket von der InfinityPost.");
+                        player.sendMessage(Config.getPaketSentMessage().replace("{adresse}", id));
                     }
 
                     @Override
                     public void abort(Player player) {
-                        player.sendMessage("Cancelled");
+                        player.sendMessage(Config.getBuyCancelMessage());
                     }
                 });
             }
@@ -480,23 +476,23 @@ public class InvListener implements Listener
             Drucker.uuids.remove(event.getPlayer().getUniqueId());
             return;
         }
-        if(event.getView().getTitle().equals("Füge Dokumente hinzu"))
+        if(event.getView().getTitle().equals(Config.getPrinterStartTitle()))
         {
             Player player = (Player) event.getPlayer();
             addItem(player, event.getInventory().getItem(10));
             addItem(player, event.getInventory().getItem(12));
             addItem(player, event.getInventory().getItem(13));
-        } else if (event.getView().getTitle().equals("Kopieren...")) {
+        } else if (event.getView().getTitle().equals(Config.getPrinterWorkingTitle())) {
             Player player = (Player) event.getPlayer();
             addItem(player, event.getInventory().getItem(10));
             addItem(player, new ItemStack(Material.INK_SACK));
             addItem(player, event.getInventory().getItem(16));
-        } else if (event.getView().getTitle().equals("Fertig")) {
+        } else if (event.getView().getTitle().equals(Config.getPrinterFinishTitle())) {
             Player player = (Player) event.getPlayer();
             addItem(player, event.getInventory().getItem(12));
             addItem(player, event.getInventory().getItem(14));
         }
-        else if(event.getView().getTitle().equals("Fülle das Paket"))
+        else if(event.getView().getTitle().equals(Config.getFillPaketTitle()))
         {
             int id = Integer.parseInt(event.getInventory().getItem(26).getItemMeta().getLore().get(0).split(" ")[5]);
             PaketeConfig.getConfig().set(id + ".item", event.getInventory().getItem(13));

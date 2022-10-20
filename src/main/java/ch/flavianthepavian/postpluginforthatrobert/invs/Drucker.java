@@ -5,14 +5,12 @@ import ch.flavianthepavian.postpluginforthatrobert.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-
 import java.util.*;
 
 public class Drucker
@@ -46,7 +44,7 @@ public class Drucker
         buch.setItemMeta(buchMeta);
         inv.setItem(22, buch);
 
-        ItemStack go = AngelaPetra.getSkull(Config.getPrinterTexture(), Config.getPrinterItemTitle(), Collections.singletonList(ChatColor.GRAY + "Clicke, um den" +
+        ItemStack go = AngelaPetra.getSkull(Config.getPrinterTexture(), ChatColor.WHITE + "Kopieren", Collections.singletonList(ChatColor.GRAY + "Clicke, um den" +
                 " Kopierprozess zu starten"));
         inv.setItem(25, go);
 
@@ -121,7 +119,7 @@ public class Drucker
                     Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable() {
                         @Override
                         public void run() {
-                            if(!player.getOpenInventory().getTitle().equals("Kopieren..."))
+                            if(!player.getOpenInventory().getTitle().equals(Config.getPrinterWorkingTitle()))
                             {
                                 return;
                             }

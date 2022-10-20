@@ -1,15 +1,13 @@
 package ch.flavianthepavian.postpluginforthatrobert.listeners;
 
+import ch.flavianthepavian.postpluginforthatrobert.config.Config;
 import ch.flavianthepavian.postpluginforthatrobert.config.GrusskartenConfig;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerEditBookEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +20,7 @@ public class GrusskarteListener implements Listener
         {
             return;
         }
-        if (!event.getPreviousBookMeta().getLore().get(0).startsWith(ChatColor.GRAY + "Grusskarte"))
+        if (!event.getPreviousBookMeta().getLore().get(0).startsWith(Config.getKarteItemTitle()))
         {
             return;
         }
@@ -31,7 +29,7 @@ public class GrusskarteListener implements Listener
         if(!GrusskartenConfig.getConfig().getString(id + ".writer").equalsIgnoreCase(event.getPlayer().getUniqueId().toString()))
         {
             event.setCancelled(true);
-            event.getPlayer().sendMessage("You can't do that");
+            event.getPlayer().sendMessage(Config.getAccessErrorMessage());
             ItemStack toreturn = new ItemStack(Material.BOOK_AND_QUILL);
             BookMeta meta = (BookMeta) toreturn.getItemMeta();
             List<String> list = new ArrayList<>();

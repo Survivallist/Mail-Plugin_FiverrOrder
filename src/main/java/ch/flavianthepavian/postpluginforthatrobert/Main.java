@@ -3,10 +3,7 @@ package ch.flavianthepavian.postpluginforthatrobert;
 import ch.flavianthepavian.postpluginforthatrobert.commands.SpawnNPCCommand;
 import ch.flavianthepavian.postpluginforthatrobert.config.ConfigManager;
 import ch.flavianthepavian.postpluginforthatrobert.config.NPCConfig;
-import ch.flavianthepavian.postpluginforthatrobert.config.SkinConfig;
 import ch.flavianthepavian.postpluginforthatrobert.events.PacketReader;
-import ch.flavianthepavian.postpluginforthatrobert.invs.AngelaPetra;
-import ch.flavianthepavian.postpluginforthatrobert.items.Grusskarte;
 import ch.flavianthepavian.postpluginforthatrobert.listeners.GrusskarteListener;
 import ch.flavianthepavian.postpluginforthatrobert.listeners.InteractListener;
 import ch.flavianthepavian.postpluginforthatrobert.listeners.InvListener;
@@ -16,12 +13,9 @@ import ch.flavianthepavian.postpluginforthatrobert.npcs.Spawner;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Collections;
 import java.util.UUID;
 
 

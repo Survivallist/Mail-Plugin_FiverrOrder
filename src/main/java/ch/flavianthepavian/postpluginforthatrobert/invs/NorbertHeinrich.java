@@ -38,21 +38,20 @@ public class NorbertHeinrich
             inv.setItem(10, drucker);
 
 
-            ItemStack grusskarte = new ItemStack(Config.getKarteMaterial());
+            ItemStack grusskarte = new ItemStack(Material.BOOK_AND_QUILL);
             ItemMeta grusskarteMeta = grusskarte.getItemMeta();
             grusskarteMeta.setDisplayName(Config.getKarteItemTitle());
             grusskarteMeta.setLore(Collections.singletonList(ChatColor.GRAY + "Clicke, um eine Grusskarte zu kaufen"));
             grusskarte.setItemMeta(grusskarteMeta);
             inv.setItem(14, grusskarte);
 
-            ItemStack send = getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2IwNmNlNmZmYTNjNzMzYTE4NzMzOWQzZmNjZjAwN2E3OD" +
-                    "RmNzM3ODg4OGZkMjEwZTYzZGJhMjMzOTQ5ZGUzZSJ9fX0=", ChatColor.WHITE + "Etwas versenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um etwas " +
-                    "zu versenden"));
+            ItemStack send = getSkull(Config.getMailTexture(), ChatColor.WHITE + "Etwas versenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um etwas " +
+                    "zu versenden")); //
             inv.setItem(12, send);
 
-            ItemStack paket = new ItemStack(Material.ENDER_CHEST);
+            ItemStack paket = new ItemStack(Config.getPaketMaterial());
             ItemMeta packetMeta = paket.getItemMeta();
-            packetMeta.setDisplayName(ChatColor.WHITE + "Paket");
+            packetMeta.setDisplayName(Config.getPaketItemTitle());
             packetMeta.setLore(Collections.singletonList(ChatColor.GRAY + "Clicke, um ein leeres packet zu kaufen"));
             paket.setItemMeta(packetMeta);
             inv.setItem(16, paket);
@@ -60,8 +59,7 @@ public class NorbertHeinrich
             player.openInventory(inv);
             baseInv = inv;
 
-            AngelaPetra.drucker = getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGYzZWI4OWYzZmU5M2V" +
-                    "iY2JjY2RhOWQwYTE5YjY0MGRkYTcxZTI4NGVhZjQ5NzgzMmZmNDdhZDJlYWM4ODIxIn19fQ==", ChatColor.WHITE + "Drucker", Collections.emptyList());
+            AngelaPetra.drucker = getSkull(Config.getPrinterTexture(), Config.getPrinterItemTitle(), Collections.emptyList());
 
             AngelaPetra.grusskarte = new ItemStack(Material.BOOK_AND_QUILL);
             grusskarteMeta.setLore(Collections.emptyList());
@@ -101,9 +99,9 @@ public class NorbertHeinrich
 
     public static void openSend(Player player)
     {
-        Inventory inv = Bukkit.createInventory(player, InventoryType.HOPPER, "Was willst du versenden?");
+        Inventory inv = Bukkit.createInventory(player, InventoryType.HOPPER, Config.getWhatToSendTitle());
 
-        ItemStack fill = new ItemStack(Material.STAINED_GLASS_PANE);
+        ItemStack fill = new ItemStack(Config.getFillMaterial());
         ItemMeta fillMeta = fill.getItemMeta();
         fillMeta.setDisplayName(" ");
         fillMeta.setLore(new ArrayList<>());
@@ -114,13 +112,11 @@ public class NorbertHeinrich
         }
 
 
-        ItemStack sendBrief = getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2IwNmNlNmZmYTNjNzMzYTE4NzMzOWQzZmNjZjAwN2E3OD" +
-                "RmNzM3ODg4OGZkMjEwZTYzZGJhMjMzOTQ5ZGUzZSJ9fX0=", ChatColor.WHITE + "Brief absenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um einen Brief " +
+        ItemStack sendBrief = getSkull(Config.getMailTexture(), ChatColor.WHITE + "Brief absenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um einen Brief " +
                 "zu versenden"));
         inv.setItem(0, sendBrief);
 
-        ItemStack sendPaket = getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzBmZWY5NDQxNjk5ZDE1YjcxMDQ2NzA3ZmM4ZT" +
-                "E5OGJkM2M1OTEyYjBmNzYxYmNjNjg5NjRjMjE4YzczZjg4ZiJ9fX0=", ChatColor.WHITE + "Paket absenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um ein Paket " +
+        ItemStack sendPaket = getSkull(Config.getPaketTexture(), ChatColor.WHITE + "Paket absenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um ein Paket " +
                 "zu versenden"));
         inv.setItem(4, sendPaket);
 
@@ -129,9 +125,9 @@ public class NorbertHeinrich
 
     public static void openSendBrief(Player player)
     {
-        Inventory inv = Bukkit.createInventory(player, 27, "Lege einen Brief ein");
+        Inventory inv = Bukkit.createInventory(player, 27, Config.getInsertBriefTitle());
 
-        ItemStack fill = new ItemStack(Material.STAINED_GLASS_PANE);
+        ItemStack fill = new ItemStack(Config.getFillMaterial());
         ItemMeta fillMeta = fill.getItemMeta();
         fillMeta.setDisplayName(" ");
         fillMeta.setLore(new ArrayList<>());
@@ -143,8 +139,7 @@ public class NorbertHeinrich
 
         inv.setItem(13, null);
 
-        ItemStack send = getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2IwNmNlNmZmYTNjNzMzYTE4NzMzOWQzZmNjZjAwN2E3OD" +
-                "RmNzM3ODg4OGZkMjEwZTYzZGJhMjMzOTQ5ZGUzZSJ9fX0=", ChatColor.WHITE + "Brief absenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um einen Brief " +
+        ItemStack send = getSkull(Config.getMailTexture(), ChatColor.WHITE + "Brief absenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um einen Brief " +
                 "zu versenden"));
         inv.setItem(22, send);
 
@@ -152,9 +147,9 @@ public class NorbertHeinrich
     }
     public static void openSendPaket(Player player)
     {
-        Inventory inv = Bukkit.createInventory(player, 27, "Lege ein Paket ein");
+        Inventory inv = Bukkit.createInventory(player, 27, Config.getInsertPaketTitle());
 
-        ItemStack fill = new ItemStack(Material.STAINED_GLASS_PANE);
+        ItemStack fill = new ItemStack(Config.getFillMaterial());
         ItemMeta fillMeta = fill.getItemMeta();
         fillMeta.setDisplayName(" ");
         fillMeta.setLore(new ArrayList<>());
@@ -166,8 +161,7 @@ public class NorbertHeinrich
 
         inv.setItem(13, null);
 
-        ItemStack send = getSkull("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzBmZWY5NDQxNjk5ZDE1YjcxMDQ2NzA3ZmM4ZT" +
-                "E5OGJkM2M1OTEyYjBmNzYxYmNjNjg5NjRjMjE4YzczZjg4ZiJ9fX0=", ChatColor.WHITE + "Paket absenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um ein Paket " +
+        ItemStack send = getSkull(Config.getMailTexture(), ChatColor.WHITE + "Paket absenden", Collections.singletonList(ChatColor.GRAY + "Clicke, um ein Paket " +
                 "zu versenden"));
         inv.setItem(22, send);
 

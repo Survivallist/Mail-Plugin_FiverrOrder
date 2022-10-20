@@ -1,13 +1,11 @@
 package ch.flavianthepavian.postpluginforthatrobert.items;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.GrusskartenConfig;
+import ch.flavianthepavian.postpluginforthatrobert.config.Config;
 import ch.flavianthepavian.postpluginforthatrobert.config.PaketeConfig;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,9 +72,9 @@ public class Paket
         }
         text = PaketeConfig.getConfig().getString(player.getUniqueId() + "." + this.id);
 
-        stack = new ItemStack(Material.ENDER_CHEST);
+        stack = new ItemStack(Config.getPaketMaterial());
         ItemMeta meta = stack.getItemMeta();
-        meta.setDisplayName(ChatColor.WHITE + "Paket");
+        meta.setDisplayName(Config.getPaketItemTitle());
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Paket Nr. " + this.id);
         lore.add(ChatColor.GRAY + "Von " + this.player.getName());

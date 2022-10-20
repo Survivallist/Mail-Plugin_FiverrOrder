@@ -51,7 +51,7 @@ public class AngelaPetra
             papier.setItemMeta(papierMeta);
             inv.setItem(14, papier);
 
-            ItemStack grusskarte = new ItemStack(Config.getKarteMaterial());
+            ItemStack grusskarte = new ItemStack(Material.BOOK_AND_QUILL);
             ItemMeta grusskarteMeta = grusskarte.getItemMeta();
             grusskarteMeta.setDisplayName(Config.getKarteItemTitle());
             grusskarteMeta.setLore(Collections.singletonList(ChatColor.GRAY + "Clicke, um eine Grusskarte zu kaufen"));
@@ -71,7 +71,7 @@ public class AngelaPetra
             papierMeta.setLore(Collections.emptyList());
             AngelaPetra.papier.setItemMeta(papierMeta);
 
-            AngelaPetra.grusskarte = new ItemStack(Config.getKarteMaterial());
+            AngelaPetra.grusskarte = new ItemStack(Material.BOOK_AND_QUILL);
             grusskarteMeta.setLore(Collections.emptyList());
             AngelaPetra.grusskarte.setItemMeta(grusskarteMeta);
         }

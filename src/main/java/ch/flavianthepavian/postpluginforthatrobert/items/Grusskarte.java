@@ -1,14 +1,13 @@
 package ch.flavianthepavian.postpluginforthatrobert.items;
 
+import ch.flavianthepavian.postpluginforthatrobert.config.Config;
 import ch.flavianthepavian.postpluginforthatrobert.config.GrusskartenConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Grusskarte
@@ -75,7 +74,7 @@ public class Grusskarte
 
         stack = new ItemStack(Material.BOOK_AND_QUILL);
         ItemMeta meta = stack.getItemMeta();
-        meta.setDisplayName(ChatColor.WHITE + "Grusskarte");
+        meta.setDisplayName(Config.getKarteItemTitle());
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.GRAY + "Grusskarte Nr. " + this.id);
         lore.add(ChatColor.GRAY + "Geschrieben von " + this.player.getName());

@@ -1,5 +1,6 @@
 package ch.flavianthepavian.postpluginforthatrobert.listeners;
 
+import ch.flavianthepavian.postpluginforthatrobert.config.Config;
 import ch.flavianthepavian.postpluginforthatrobert.config.GrusskartenConfig;
 import ch.flavianthepavian.postpluginforthatrobert.config.PaketeConfig;
 import ch.flavianthepavian.postpluginforthatrobert.invs.Drucker;
@@ -43,12 +44,12 @@ public class InteractListener implements Listener
         {
             return;
         }
-        if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Briefumschlag"))
+        if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(Config.getBriefItemTitle()))
         {
             event.setCancelled(true);
             Player player = event.getPlayer();
             List<Integer> cards = GrusskartenConfig.getConfig().getIntegerList(player.getUniqueId().toString());
-            Inventory inv = Bukkit.createInventory(player, (cards.size() - (cards.size() % 9) + 9), "Wähle eine Grusskarte aus");
+            Inventory inv = Bukkit.createInventory(player, (cards.size() - (cards.size() % 9) + 9), Config.getChooseKarteTitle());
             for (int index : cards)
             {
                 ItemStack stack = new ItemStack(Material.BOOK_AND_QUILL);
@@ -91,14 +92,14 @@ public class InteractListener implements Listener
             }
             player.openInventory(inv);
         }
-        else if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.WHITE + "Paket"))
+        else if(event.getItem().getItemMeta().getDisplayName().equalsIgnoreCase(Config.getPaketItemTitle()))
         {
             event.setCancelled(true);
             Player player = event.getPlayer();
             int id = Integer.parseInt(event.getItem().getItemMeta().getLore().get(0).split(" ")[2]);
-            Inventory inv = Bukkit.createInventory(player, 27, "Fülle das Paket");
+            Inventory inv = Bukkit.createInventory(player, 27, Config.getFillPaketTitle());
 
-            ItemStack fill = new ItemStack(Material.STAINED_GLASS_PANE);
+            ItemStack fill = new ItemStack(Config.getFillMaterial());
             ItemMeta fillMeta = fill.getItemMeta();
             fillMeta.setDisplayName(" ");
             fillMeta.setLore(new ArrayList<>());
@@ -145,10 +146,8 @@ public class InteractListener implements Listener
             return;
         }
         String text = value.getProperties().get("textures").iterator().next().getValue();
-        if(text.equals("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNG" +
-                "YzZWI4OWYzZmU5M2ViY2JjY2RhOWQwYTE5YjY0MGRkYTcxZTI4NGVhZjQ5NzgzMmZmNDdhZDJlYWM4ODIxIn19fQ=="))
+        if(text.equals(Config.getPrinterTexture()))
         {
-            event.getPlayer().sendMessage(" hit");
             Drucker.openMain(event.getPlayer());
         }
     }
