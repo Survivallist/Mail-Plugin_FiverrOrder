@@ -1,9 +1,9 @@
-package ch.flavianthepavian.postpluginforthatrobert.listeners;
+package ch.flavianthepavian.postplugin.listeners;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.Config;
-import ch.flavianthepavian.postpluginforthatrobert.config.GrusskartenConfig;
-import ch.flavianthepavian.postpluginforthatrobert.config.PaketeConfig;
-import ch.flavianthepavian.postpluginforthatrobert.invs.Drucker;
+import ch.flavianthepavian.postplugin.config.Config;
+import ch.flavianthepavian.postplugin.config.GrusskartenConfig;
+import ch.flavianthepavian.postplugin.config.PaketeConfig;
+import ch.flavianthepavian.postplugin.invs.Drucker;
 import com.mojang.authlib.GameProfile;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

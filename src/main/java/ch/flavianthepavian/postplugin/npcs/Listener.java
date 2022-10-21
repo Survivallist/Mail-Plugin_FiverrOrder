@@ -1,9 +1,9 @@
-package ch.flavianthepavian.postpluginforthatrobert.npcs;
+package ch.flavianthepavian.postplugin.npcs;
 
-import ch.flavianthepavian.postpluginforthatrobert.events.NPCClickEvent;
-import ch.flavianthepavian.postpluginforthatrobert.events.PacketReader;
-import ch.flavianthepavian.postpluginforthatrobert.invs.AngelaPetra;
-import ch.flavianthepavian.postpluginforthatrobert.invs.NorbertHeinrich;
+import ch.flavianthepavian.postplugin.events.NPCClickEvent;
+import ch.flavianthepavian.postplugin.events.PacketReader;
+import ch.flavianthepavian.postplugin.invs.AngelaPetra;
+import ch.flavianthepavian.postplugin.invs.NorbertHeinrich;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;

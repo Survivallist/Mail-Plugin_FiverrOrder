@@ -1,7 +1,7 @@
-package ch.flavianthepavian.postpluginforthatrobert.items;
+package ch.flavianthepavian.postplugin.items;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.Config;
-import ch.flavianthepavian.postpluginforthatrobert.config.PaketeConfig;
+import ch.flavianthepavian.postplugin.config.Config;
+import ch.flavianthepavian.postplugin.config.PaketeConfig;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

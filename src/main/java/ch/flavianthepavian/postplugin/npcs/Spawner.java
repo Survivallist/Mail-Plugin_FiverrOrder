@@ -1,7 +1,7 @@
-package ch.flavianthepavian.postpluginforthatrobert.npcs;
+package ch.flavianthepavian.postplugin.npcs;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.NPCConfig;
-import ch.flavianthepavian.postpluginforthatrobert.config.SkinConfig;
+import ch.flavianthepavian.postplugin.config.NPCConfig;
+import ch.flavianthepavian.postplugin.config.SkinConfig;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.server.v1_12_R1.*;

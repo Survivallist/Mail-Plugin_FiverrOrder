@@ -1,4 +1,4 @@
-package ch.flavianthepavian.postpluginforthatrobert.npcs;
+package ch.flavianthepavian.postplugin.npcs;
 
 public enum NPCType
 {

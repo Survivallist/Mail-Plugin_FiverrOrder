@@ -1,6 +1,6 @@
-package ch.flavianthepavian.postpluginforthatrobert.invs;
+package ch.flavianthepavian.postplugin.invs;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.Config;
+import ch.flavianthepavian.postplugin.config.Config;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.bukkit.Bukkit;

@@ -1,7 +1,7 @@
-name: PostPluginForThatRobert
+name: PostPlugin
 version: '${project.version}'
-main: ch.flavianthepavian.postpluginforthatrobert.Main
+main: ch.flavianthepavian.postplugin.Main
 authors: [ Flavianthepavian ]
-description: Ein Port-Plugin für ThatRobert
+description: Ein Post-Plugin
 commands:
-  npc:
+  postnpc:

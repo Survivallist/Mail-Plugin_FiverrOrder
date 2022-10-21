@@ -1,7 +1,7 @@
-package ch.flavianthepavian.postpluginforthatrobert.config;
+package ch.flavianthepavian.postplugin.config;
 
-import ch.flavianthepavian.postpluginforthatrobert.Main;
-import ch.flavianthepavian.postpluginforthatrobert.npcs.NPCType;
+import ch.flavianthepavian.postplugin.Main;
+import ch.flavianthepavian.postplugin.npcs.NPCType;
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;

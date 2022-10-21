@@ -1,7 +1,7 @@
-package ch.flavianthepavian.postpluginforthatrobert.events;
+package ch.flavianthepavian.postplugin.events;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.SkinConfig;
-import ch.flavianthepavian.postpluginforthatrobert.npcs.NPCType;
+import ch.flavianthepavian.postplugin.config.SkinConfig;
+import ch.flavianthepavian.postplugin.npcs.NPCType;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import org.bukkit.entity.Player;

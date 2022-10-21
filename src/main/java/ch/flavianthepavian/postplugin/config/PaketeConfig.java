@@ -1,6 +1,6 @@
-package ch.flavianthepavian.postpluginforthatrobert.config;
+package ch.flavianthepavian.postplugin.config;
 
-import ch.flavianthepavian.postpluginforthatrobert.Main;
+import ch.flavianthepavian.postplugin.Main;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;

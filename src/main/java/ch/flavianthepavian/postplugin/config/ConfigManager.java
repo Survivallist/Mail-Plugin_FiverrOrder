@@ -1,4 +1,4 @@
-package ch.flavianthepavian.postpluginforthatrobert.config;
+package ch.flavianthepavian.postplugin.config;
 
 public class ConfigManager
 {

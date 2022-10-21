@@ -1,7 +1,7 @@
-package ch.flavianthepavian.postpluginforthatrobert.events;
+package ch.flavianthepavian.postplugin.events;
 
-import ch.flavianthepavian.postpluginforthatrobert.Main;
-import ch.flavianthepavian.postpluginforthatrobert.npcs.Spawner;
+import ch.flavianthepavian.postplugin.Main;
+import ch.flavianthepavian.postplugin.npcs.Spawner;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;

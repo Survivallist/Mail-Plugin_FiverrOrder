@@ -1,8 +1,8 @@
-package ch.flavianthepavian.postpluginforthatrobert.commands;
+package ch.flavianthepavian.postplugin.commands;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.Config;
-import ch.flavianthepavian.postpluginforthatrobert.npcs.NPCType;
-import ch.flavianthepavian.postpluginforthatrobert.npcs.Spawner;
+import ch.flavianthepavian.postplugin.config.Config;
+import ch.flavianthepavian.postplugin.npcs.NPCType;
+import ch.flavianthepavian.postplugin.npcs.Spawner;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

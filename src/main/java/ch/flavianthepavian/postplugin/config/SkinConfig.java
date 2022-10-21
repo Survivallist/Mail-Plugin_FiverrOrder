@@ -1,13 +1,13 @@
-package ch.flavianthepavian.postpluginforthatrobert.config;
+package ch.flavianthepavian.postplugin.config;
 
-import ch.flavianthepavian.postpluginforthatrobert.Main;
+import ch.flavianthepavian.postplugin.Main;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
-public class GrusskartenConfig
+public class SkinConfig
 {
     static File customConfigFile;
     static FileConfiguration customConfig;
@@ -17,7 +17,7 @@ public class GrusskartenConfig
     }
 
     public static void createCustomConfig() {
-        customConfigFile = new File(Main.getInstance().getDataFolder().getAbsolutePath() + "/grusskarten.yml");
+        customConfigFile = new File(Main.getInstance().getDataFolder().getAbsolutePath() + "/skins.yml");
         if (!customConfigFile.exists()) {
             try {
                 customConfigFile.createNewFile();
@@ -53,6 +53,6 @@ public class GrusskartenConfig
 
     public static String getPath()
     {
-        return Main.getInstance().getDataFolder().getAbsolutePath() + "/grusskarten.yml";
+        return Main.getInstance().getDataFolder().getAbsolutePath() + "/skins.yml";
     }
 }

@@ -1,7 +1,7 @@
-package ch.flavianthepavian.postpluginforthatrobert.invs;
+package ch.flavianthepavian.postplugin.invs;
 
-import ch.flavianthepavian.postpluginforthatrobert.Main;
-import ch.flavianthepavian.postpluginforthatrobert.config.Config;
+import ch.flavianthepavian.postplugin.Main;
+import ch.flavianthepavian.postplugin.config.Config;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

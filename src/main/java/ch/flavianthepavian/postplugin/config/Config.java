@@ -1,6 +1,6 @@
-package ch.flavianthepavian.postpluginforthatrobert.config;
+package ch.flavianthepavian.postplugin.config;
 
-import ch.flavianthepavian.postpluginforthatrobert.Main;
+import ch.flavianthepavian.postplugin.Main;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -13,14 +13,10 @@ public class Config
     static FileConfiguration config = Main.getInstance().getConfig();
     public static void createConfig()
     {
-        Main.getInstance().reloadConfig();
+        Main.getInstance().getConfig().addDefaults(getDefaults());
+        Main.getInstance().getConfig().options().copyDefaults(true);
+        Main.getInstance().saveDefaultConfig();
         Main.getInstance().saveConfig();
-        if(!config.contains("messages.error_console"))
-        {
-            config.addDefaults(getDefaults());
-            Main.getInstance().saveConfig();
-            Main.getInstance().saveDefaultConfig();
-        }
     }
 
     public static void reload()

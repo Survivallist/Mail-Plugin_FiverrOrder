@@ -1,12 +1,12 @@
-package ch.flavianthepavian.postpluginforthatrobert.listeners;
+package ch.flavianthepavian.postplugin.listeners;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.Config;
-import ch.flavianthepavian.postpluginforthatrobert.config.PaketeConfig;
-import ch.flavianthepavian.postpluginforthatrobert.invs.AngelaPetra;
-import ch.flavianthepavian.postpluginforthatrobert.invs.Drucker;
-import ch.flavianthepavian.postpluginforthatrobert.invs.NorbertHeinrich;
-import ch.flavianthepavian.postpluginforthatrobert.items.Grusskarte;
-import ch.flavianthepavian.postpluginforthatrobert.items.Paket;
+import ch.flavianthepavian.postplugin.config.Config;
+import ch.flavianthepavian.postplugin.config.PaketeConfig;
+import ch.flavianthepavian.postplugin.invs.AngelaPetra;
+import ch.flavianthepavian.postplugin.invs.Drucker;
+import ch.flavianthepavian.postplugin.invs.NorbertHeinrich;
+import ch.flavianthepavian.postplugin.items.Grusskarte;
+import ch.flavianthepavian.postplugin.items.Paket;
 import de.infinitycity.banksystem.apis.buy.BuyAPI;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

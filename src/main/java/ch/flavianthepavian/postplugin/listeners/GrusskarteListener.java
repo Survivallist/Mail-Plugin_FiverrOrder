@@ -1,7 +1,7 @@
-package ch.flavianthepavian.postpluginforthatrobert.listeners;
+package ch.flavianthepavian.postplugin.listeners;
 
-import ch.flavianthepavian.postpluginforthatrobert.config.Config;
-import ch.flavianthepavian.postpluginforthatrobert.config.GrusskartenConfig;
+import ch.flavianthepavian.postplugin.config.Config;
+import ch.flavianthepavian.postplugin.config.GrusskartenConfig;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

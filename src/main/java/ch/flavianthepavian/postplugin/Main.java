@@ -1,15 +1,15 @@
-package ch.flavianthepavian.postpluginforthatrobert;
+package ch.flavianthepavian.postplugin;
 
-import ch.flavianthepavian.postpluginforthatrobert.commands.SpawnNPCCommand;
-import ch.flavianthepavian.postpluginforthatrobert.config.ConfigManager;
-import ch.flavianthepavian.postpluginforthatrobert.config.NPCConfig;
-import ch.flavianthepavian.postpluginforthatrobert.events.PacketReader;
-import ch.flavianthepavian.postpluginforthatrobert.listeners.GrusskarteListener;
-import ch.flavianthepavian.postpluginforthatrobert.listeners.InteractListener;
-import ch.flavianthepavian.postpluginforthatrobert.listeners.InvListener;
-import ch.flavianthepavian.postpluginforthatrobert.npcs.Listener;
-import ch.flavianthepavian.postpluginforthatrobert.npcs.NPCType;
-import ch.flavianthepavian.postpluginforthatrobert.npcs.Spawner;
+import ch.flavianthepavian.postplugin.commands.SpawnNPCCommand;
+import ch.flavianthepavian.postplugin.config.ConfigManager;
+import ch.flavianthepavian.postplugin.config.NPCConfig;
+import ch.flavianthepavian.postplugin.events.PacketReader;
+import ch.flavianthepavian.postplugin.listeners.GrusskarteListener;
+import ch.flavianthepavian.postplugin.listeners.InteractListener;
+import ch.flavianthepavian.postplugin.listeners.InvListener;
+import ch.flavianthepavian.postplugin.npcs.Listener;
+import ch.flavianthepavian.postplugin.npcs.NPCType;
+import ch.flavianthepavian.postplugin.npcs.Spawner;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import org.bukkit.Bukkit;
@@ -29,9 +29,7 @@ public final class Main extends JavaPlugin {
         main = this;
         registerListeners();
         registerCommands();
-        saveConfig();
         ConfigManager.createConfigs();
-        ConfigManager.reload();
         loadNPCs();
         if(!Bukkit.getOnlinePlayers().isEmpty())
         {
@@ -73,7 +71,7 @@ public final class Main extends JavaPlugin {
 
     void registerCommands()
     {
-        getCommand("npc").setExecutor(new SpawnNPCCommand());
+        getCommand("postnpc").setExecutor(new SpawnNPCCommand());
     }
 
     public static Main getInstance()
